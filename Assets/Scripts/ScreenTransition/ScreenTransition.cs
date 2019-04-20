@@ -1,7 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
-//TODO animate
-//TODO rotate
 public class ScreenTransition : MonoBehaviour
 {
     public Transform prefab;
@@ -12,15 +11,41 @@ public class ScreenTransition : MonoBehaviour
     public Color start;
     public Color end;
 
-    /* Use https://learnui.design/tools/data-color-picker.html to generate a range of colors */
     public Color[] colors;
+
+    Rect rect;
+    List<GrowingBar> bars;
 
     void Start()
     {
         CreateColors();
-
         Canvas canvas = GetComponentInParent<Canvas>();
-        Rect rect = canvas.GetComponent<RectTransform>().rect;
+        rect = canvas.GetComponent<RectTransform>().rect;
+    }
+
+    void CreateColors()
+    {
+        float startH, startS, startV;
+        float endH, endS, endV;
+        Color.RGBToHSV(start, out startH, out startS, out startV);
+        Color.RGBToHSV(end, out endH, out endS, out endV);
+
+        colors = new Color[count];
+        float delta = 1f / (count - 1f);
+
+        for (int i = 0; i < count; i++)
+        {
+            float t = i * delta;
+            float h = Mathf.Lerp(startH, endH, t);
+            float s = Mathf.Lerp(startS, endS, t);
+            float v = Mathf.Lerp(startV, endV, t);
+            colors[i] = Color.HSVToRGB(h, s, v);
+        }
+    }
+
+    public void Show()
+    {
+        bars = new List<GrowingBar>();
 
         float totalWeight = ((count - 1) * defaultWeight) + centerWeight;
         float defaultPercent = defaultWeight / totalWeight;
@@ -49,26 +74,6 @@ public class ScreenTransition : MonoBehaviour
         }
     }
 
-    void CreateColors()
-    {
-        float startH, startS, startV;
-        float endH, endS, endV;
-        Color.RGBToHSV(start, out startH, out startS, out startV);
-        Color.RGBToHSV(end, out endH, out endS, out endV);
-
-        colors = new Color[count];
-        float delta = 1f / (count - 1f);
-
-        for (int i = 0; i < count; i++)
-        {
-            float t = i * delta;
-            float h = Mathf.Lerp(startH, endH, t);
-            float s = Mathf.Lerp(startS, endS, t);
-            float v = Mathf.Lerp(startV, endV, t);
-            colors[i] = Color.HSVToRGB(h, s, v);
-        }
-    }
-
     void CreateGrowingBar(Vector3 position, float width, float height, float waitTime, Color color)
     {
         Transform t = Instantiate(prefab, position, Quaternion.identity);
@@ -79,5 +84,17 @@ public class ScreenTransition : MonoBehaviour
         gb.height = height;
         gb.waitTime = waitTime;
         gb.color = color;
+
+        bars.Add(gb);
+    }
+
+    public void Hide()
+    {
+        int middleIndex = count / 2;
+        
+        for (int i = 0; i <= middleIndex; i++)
+        {
+            Debug.Log(i);
+        }
     }
 }

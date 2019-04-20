@@ -16,6 +16,7 @@ public class GrowingBar : MonoBehaviour
     Image image;
     float speed;
     bool isStarted;
+    bool isEnding;
 
     void Start()
     {
@@ -49,5 +50,16 @@ public class GrowingBar : MonoBehaviour
             color.a = Mathf.MoveTowards(color.a, 1f, 1f * speed * Time.deltaTime);
             image.color = color;
         }
+    }
+
+    public void Hide()
+    {
+        StartCoroutine(SetIsEnding());
+    }
+
+    IEnumerator SetIsEnding()
+    {
+        yield return new WaitForSeconds(waitTime);
+        isEnding = true;
     }
 }
