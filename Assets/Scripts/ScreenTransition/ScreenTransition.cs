@@ -8,6 +8,7 @@ public class ScreenTransition : MonoBehaviour
     public int count = 7;
     public float defaultWeight = 1f;
     public float centerWeight = 1.5f;
+    public float delayTime = 0.1f;
     public Color start;
     public Color end;
 
@@ -35,16 +36,16 @@ public class ScreenTransition : MonoBehaviour
         {
             Vector3 position = Vector3.zero;
             position.x = -1 * ((0.5f * centerWidth) + (0.5f * defaultWidth) + (i * defaultWidth));
-            CreateGrowingBar(position, defaultWidth, rect.height, colors[middleIndex - i - 1]);
+            CreateGrowingBar(position, defaultWidth, totalWidth, i * delayTime, colors[middleIndex - i - 1]);
         }
 
-        CreateGrowingBar(Vector3.zero, centerWidth, rect.height, colors[middleIndex]);
+        CreateGrowingBar(Vector3.zero, centerWidth, totalWidth, 0f, colors[middleIndex]);
 
         for (int i = 0; i < middleIndex; i++)
         {
             Vector3 position = Vector3.zero;
             position.x = (0.5f * centerWidth) + (0.5f * defaultWidth) + (i * defaultWidth);
-            CreateGrowingBar(position, defaultWidth, rect.height, colors[middleIndex + i + 1]);
+            CreateGrowingBar(position, defaultWidth, totalWidth, i * delayTime, colors[middleIndex + i + 1]);
         }
     }
 
@@ -68,7 +69,7 @@ public class ScreenTransition : MonoBehaviour
         }
     }
 
-    void CreateGrowingBar(Vector3 position, float width, float height, Color color)
+    void CreateGrowingBar(Vector3 position, float width, float height, float waitTime, Color color)
     {
         Transform t = Instantiate(prefab, position, Quaternion.identity);
         t.SetParent(transform, false);
@@ -76,6 +77,7 @@ public class ScreenTransition : MonoBehaviour
         GrowingBar gb = t.GetComponent<GrowingBar>();
         gb.width = width;
         gb.height = height;
+        gb.waitTime = waitTime;
         gb.color = color;
     }
 }
