@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Main3D.unity
-    guid: 57aecddecf3ec4c3389f14a546783a35
+    path: Assets/Scenes/Slurp.unity
+    guid: fd8a8e57021384da88adb62085a97334
   m_configObjects: {}

@@ -2,15 +2,27 @@
 
 public class GrowLongParticle : MonoBehaviour
 {
+    public float delayStart = 1f;
     public float maxLength = 1f;
     public float growSpeed = 1f;
     public float maxDist = 1f;
 
+    float startTime;
     bool isGrowing = true;
     float distTraveled = 0;
 
+    void Start()
+    {
+        startTime = Time.time;
+    }
+
     void Update()
     {
+        if (Time.time <= (startTime + delayStart))
+        {
+            return;
+        }
+
         Vector3 scale = transform.localScale;
         Vector3 pos = transform.position;
 
