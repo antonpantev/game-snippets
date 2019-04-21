@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b52431dc52a40f3b8b2ce3141d41cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPercent: 0.44
+  startPercent: 0
   time: 0.2
   width: 0
   height: 0
