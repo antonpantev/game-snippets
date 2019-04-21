@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Slurp.unity
-    guid: fd8a8e57021384da88adb62085a97334
+    path: Assets/ScreenTransitionBars/ScreenTransitionBars.unity
+    guid: b46453e7d96304973aea93bdb30a8bd4
   m_configObjects: {}

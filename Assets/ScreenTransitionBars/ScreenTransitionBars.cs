@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class ScreenTransition : MonoBehaviour
+public class ScreenTransitionBars : MonoBehaviour
 {
     public Transform prefab;
     public int count = 7;
@@ -18,33 +18,14 @@ public class ScreenTransition : MonoBehaviour
 
     void Start()
     {
-        CreateColors();
         Canvas canvas = GetComponentInParent<Canvas>();
         rect = canvas.GetComponent<RectTransform>().rect;
     }
 
-    void CreateColors()
-    {
-        float startH, startS, startV;
-        float endH, endS, endV;
-        Color.RGBToHSV(start, out startH, out startS, out startV);
-        Color.RGBToHSV(end, out endH, out endS, out endV);
-
-        colors = new Color[count];
-        float delta = 1f / (count - 1f);
-
-        for (int i = 0; i < count; i++)
-        {
-            float t = i * delta;
-            float h = Mathf.Lerp(startH, endH, t);
-            float s = Mathf.Lerp(startS, endS, t);
-            float v = Mathf.Lerp(startV, endV, t);
-            colors[i] = Color.HSVToRGB(h, s, v);
-        }
-    }
-
     public void Show()
     {
+        CreateColors();
+
         bars = new List<GrowingBar>();
 
         float totalWeight = ((count - 1) * defaultWeight) + centerWeight;
@@ -73,6 +54,27 @@ public class ScreenTransition : MonoBehaviour
             CreateGrowingBar(position, defaultWidth, totalWidth, i * delayTime, colors[middleIndex + i + 1]);
         }
     }
+
+    void CreateColors()
+    {
+        float startH, startS, startV;
+        float endH, endS, endV;
+        Color.RGBToHSV(start, out startH, out startS, out startV);
+        Color.RGBToHSV(end, out endH, out endS, out endV);
+
+        colors = new Color[count];
+        float delta = 1f / (count - 1f);
+
+        for (int i = 0; i < count; i++)
+        {
+            float t = i * delta;
+            float h = Mathf.Lerp(startH, endH, t);
+            float s = Mathf.Lerp(startS, endS, t);
+            float v = Mathf.Lerp(startV, endV, t);
+            colors[i] = Color.HSVToRGB(h, s, v);
+        }
+    }
+
 
     void CreateGrowingBar(Vector3 position, float width, float height, float waitTime, Color color)
     {
