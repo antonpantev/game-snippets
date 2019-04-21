@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class GrowingBar : MonoBehaviour
 {
-    public float startPercent = 0f;
     public float time = 0.2f;
     public float width;
     public float height;
@@ -14,6 +13,7 @@ public class GrowingBar : MonoBehaviour
     RectTransform rt;
     Image image;
     float speed;
+    bool isEnding;
     float xTarget;
     float aTarget;
 
@@ -21,7 +21,7 @@ public class GrowingBar : MonoBehaviour
     {
         rt = GetComponent<RectTransform>();
         image = GetComponent<Image>();
-        speed = (1f - startPercent) / time;
+        speed = 1f / time;
 
         StartCoroutine(StartAnimation());
     }
@@ -30,9 +30,9 @@ public class GrowingBar : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
 
-        rt.sizeDelta = new Vector2(width * startPercent, height);
+        rt.sizeDelta = new Vector2(0f, height);
 
-        color.a = startPercent;
+        color.a = 0f;
         image.color = color;
 
         xTarget = width;
@@ -47,6 +47,11 @@ public class GrowingBar : MonoBehaviour
 
         color.a = Mathf.MoveTowards(color.a, aTarget, 1f * speed * Time.deltaTime);
         image.color = color;
+
+        if (isEnding && size.x == xTarget)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void Hide()
@@ -57,6 +62,7 @@ public class GrowingBar : MonoBehaviour
     IEnumerator SetIsEnding()
     {
         yield return new WaitForSeconds(waitTime);
+        isEnding = true;
         xTarget = 0;
         aTarget = 0;
     }
