@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/ScreenTransitionBars/ScreenTransitionBars.unity
-    guid: b46453e7d96304973aea93bdb30a8bd4
+    path: Assets/Earthquake/Earthquake.unity
+    guid: cc4f57059d34b48be8a80354338aa380
   m_configObjects: {}
