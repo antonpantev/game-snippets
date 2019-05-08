@@ -152,9 +152,9 @@ MonoBehaviour:
   prefab: {fileID: 8547368273248494971, guid: 22215c24cc30c4f0cbc791793f512163, type: 3}
   width: 51
   height: 51
-  maxDist: 12
+  maxDist: 15
   speed: 3.5
-  amplitude: 5
+  amplitude: 4
 --- !u!4 &1059609566
 Transform:
   m_ObjectHideFlags: 0
