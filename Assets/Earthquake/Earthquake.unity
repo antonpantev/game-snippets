@@ -154,11 +154,11 @@ MonoBehaviour:
   height: 51
   maxDist: 15
   speed: 3.5
-  amplitude: 4
-  lowColor: {r: 0.20247419, g: 0.36201426, b: 0.4716981, a: 1}
-  startColor: {r: 0.38527945, g: 0.58146983, b: 0.735849, a: 1}
-  highColor: {r: 0.4262638, g: 0.6623508, b: 0.8773585, a: 1}
-  colorMultiplier: 1.25
+  amplitude: 3
+  lowColor: {r: 0.23529412, g: 0.7019608, b: 0.3372549, a: 1}
+  startColor: {r: 0.45490196, g: 0.8392157, b: 0.5254902, a: 1}
+  highColor: {r: 1, g: 0.9137255, b: 0.3372549, a: 1}
+  colorMultiplier: 1
 --- !u!4 &1059609566
 Transform:
   m_ObjectHideFlags: 0
