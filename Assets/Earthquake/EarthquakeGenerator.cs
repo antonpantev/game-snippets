@@ -9,8 +9,13 @@ public class EarthquakeGenerator : MonoBehaviour
     public float maxDist = 71f;
     public float speed = 1f;
     public float amplitude = 5f;
+    public Color lowColor;
+    public Color startColor;
+    public Color highColor;
+    public float colorMultiplier = 1f;
 
     List<Transform> prefabs = new List<Transform>();
+    List<Renderer> renderers = new List<Renderer>();
 
     void Start()
     {
@@ -23,14 +28,18 @@ public class EarthquakeGenerator : MonoBehaviour
                 Vector3 pos = start + new Vector3(i, 0f, j);
                 Transform t = Instantiate(prefab, pos, Quaternion.identity, transform);
                 prefabs.Add(t);
+                renderers.Add(t.GetComponent<Renderer>());
             }
         }
     }
 
     void Update()
     {
-        foreach (Transform t in prefabs)
+        // foreach (Transform t in prefabs)
+        for (int i = 0; i < prefabs.Count; i++)
         {
+            Transform t = prefabs[i];
+
             Vector3 pos = t.position;
             // float dist = Mathf.Sqrt((pos.x * pos.x) + (pos.z * pos.z)) / maxDist;
             float dist = Mathf.Sqrt((pos.x * pos.x) + (pos.z * pos.z)) / maxDist;
@@ -41,6 +50,17 @@ public class EarthquakeGenerator : MonoBehaviour
                 float time = Time.time * speed;
                 pos.y = amplitude * Mathf.Sin(time - dist) * (1 - dist);
                 t.position = pos;
+
+                float colorT = colorMultiplier * pos.y / amplitude;
+
+                if (colorT < 0)
+                {
+                    renderers[i].material.color = Color.Lerp(startColor, lowColor, Mathf.Clamp01(-colorT));
+                }
+                else
+                {
+                    renderers[i].material.color = Color.Lerp(startColor, highColor, Mathf.Clamp01(colorT));
+                }
             }
         }
     }

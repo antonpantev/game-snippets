@@ -155,6 +155,10 @@ MonoBehaviour:
   maxDist: 15
   speed: 3.5
   amplitude: 4
+  lowColor: {r: 0, g: 0.3, b: 0.3, a: 1}
+  startColor: {r: 0, g: 0.5019608, b: 0.5019608, a: 1}
+  highColor: {r: 0, g: 0.7, b: 0.7, a: 1}
+  colorMultiplier: 1.5
 --- !u!4 &1059609566
 Transform:
   m_ObjectHideFlags: 0
@@ -336,10 +340,10 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1654976434}
-  m_LocalRotation: {x: 0.08715578, y: 0, z: 0, w: 0.9961947}
-  m_LocalPosition: {x: 0, y: 3, z: -14}
+  m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
+  m_LocalPosition: {x: 0, y: 6, z: -18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 10, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
