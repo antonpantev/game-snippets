@@ -35,18 +35,14 @@ public class EarthquakeGenerator : MonoBehaviour
 
     void Update()
     {
-        // foreach (Transform t in prefabs)
         for (int i = 0; i < prefabs.Count; i++)
         {
             Transform t = prefabs[i];
 
             Vector3 pos = t.position;
-            // float dist = Mathf.Sqrt((pos.x * pos.x) + (pos.z * pos.z)) / maxDist;
             float dist = Mathf.Sqrt((pos.x * pos.x) + (pos.z * pos.z)) / maxDist;
-            // float time = Mathf.Clamp(Time.time * speed, 0, 2f * Mathf.PI);
             if (dist <= 1)
             {
-                // dist = Mathf.Clamp01(dist);
                 float time = Time.time * speed;
                 pos.y = amplitude * Mathf.Sin(time - dist) * (1 - dist);
                 t.position = pos;
