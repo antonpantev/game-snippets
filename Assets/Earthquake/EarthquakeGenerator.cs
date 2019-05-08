@@ -14,12 +14,13 @@ public class EarthquakeGenerator : MonoBehaviour
     public Color highColor;
     public float colorMultiplier = 1f;
 
+    Vector3 start;
     List<Transform> prefabs = new List<Transform>();
     List<Renderer> renderers = new List<Renderer>();
 
     void Start()
     {
-        Vector3 start = new Vector3((-width / 2f) + 0.5f, 0f, (-height / 2f) + 0.5f);
+        start = new Vector3((-width / 2f) + 0.5f, 0f, (-height / 2f) + 0.5f);
 
         for (int i = 0; i < width; i++)
         {
@@ -31,33 +32,62 @@ public class EarthquakeGenerator : MonoBehaviour
                 renderers.Add(t.GetComponent<Renderer>());
             }
         }
+
+        RandomQuake();
     }
+
+    void RandomQuake()
+    {
+        startTime = Time.time + 0.5f;
+        center.x = Random.Range(-start.x, start.x);
+        center.z = Random.Range(-start.z, start.z);
+    }
+
+    float startTime;
+    Vector3 center;
 
     void Update()
     {
+        bool ready = true;
+
         for (int i = 0; i < prefabs.Count; i++)
         {
             Transform t = prefabs[i];
 
             Vector3 pos = t.position;
-            float dist = Mathf.Sqrt((pos.x * pos.x) + (pos.z * pos.z)) / maxDist;
-            if (dist <= 1)
+            pos.y = 0;
+
+            float dx = pos.x - center.x;
+            float dz = pos.z - center.z;
+            float dist = Mathf.Sqrt((dx * dx) + (dz * dz)) / maxDist;
+
+            float time = (Time.time - startTime - dist) * speed;
+            time = Mathf.Clamp(time, 0, Mathf.PI * 2);
+
+            if (time < Mathf.PI * 2)
             {
-                float time = Time.time * speed;
-                pos.y = amplitude * Mathf.Sin(time - dist) * (1 - dist);
-                t.position = pos;
-
-                float colorT = colorMultiplier * pos.y / amplitude;
-
-                if (colorT < 0)
-                {
-                    renderers[i].material.color = Color.Lerp(startColor, lowColor, Mathf.Clamp01(-colorT));
-                }
-                else
-                {
-                    renderers[i].material.color = Color.Lerp(startColor, highColor, Mathf.Clamp01(colorT));
-                }
+                ready = false;
             }
+
+            pos.y += amplitude * Mathf.Sin(time) * (1 - dist);
+
+            float colorT = colorMultiplier * pos.y / amplitude;
+
+            if (colorT < 0)
+            {
+                renderers[i].material.color = Color.Lerp(startColor, lowColor, Mathf.Clamp01(-colorT));
+            }
+            else
+            {
+                renderers[i].material.color = Color.Lerp(startColor, highColor, Mathf.Clamp01(colorT));
+            }
+
+            t.position = pos;
+        }
+
+        if (ready)
+        {
+            RandomQuake();
         }
     }
 }
