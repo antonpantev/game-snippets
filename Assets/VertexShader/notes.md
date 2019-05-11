@@ -2,7 +2,7 @@ Install the following the Package Manager
 * Lightweight RP
 * Shader Graph
 
-(Not sure if the Lightweight Rendering Pipeline is really needed or not I should try not using it and seeing if there is a difference)
+**NOTE:** I dont have the Lightweight Rendering Pipeline on by default because it causes bugs in other scenes so reapply it when I want this scene to work
 
 Create > Rendering > Lightweight Rendering Pipeline > Pipeline Asset
 
@@ -17,6 +17,8 @@ Attach the Material to a Sphere
 Double click Shader to open in Shader Graph
 
 Right Click > Create Node > Type Position
+
+Hit "Save Asset" in the Shader Graph window to see all the changes in play mode. Normal saving doesn't really save everything in Shader Graph.
 
 Followed this video:
 https://www.youtube.com/watch?v=vh85pzT959M
