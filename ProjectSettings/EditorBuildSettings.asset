@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Bullseye/Bullseye.unity
-    guid: afbe4b4efd9d64605b20c2a1c3acfd41
+    path: Assets/Earthquake/Earthquake.unity
+    guid: cc4f57059d34b48be8a80354338aa380
   m_configObjects: {}
