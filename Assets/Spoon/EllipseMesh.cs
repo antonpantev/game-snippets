@@ -11,6 +11,7 @@ public class EllipseMesh : MonoBehaviour
     public float delay;
     public float speed = 1f;
     public Color color;
+    public int quadCount = 120;
 
     Mesh mesh;
     List<Vector3> vertices;
@@ -40,24 +41,31 @@ public class EllipseMesh : MonoBehaviour
     {
         if (lastT < maxAngle)
         {
-            int i = vertices.Count - 2;
-
             float t = Mathf.Clamp01((Time.time - delay) * speed);
-            t = EasingFunction.EaseInOutSine(0, maxAngle, t);
+            t = EasingFunction.EaseInOutSine(0, 1, t);
 
-            Vector3 p1 = new Vector3(Mathf.Cos(t) * xRadius, Mathf.Sin(t) * yRadius, 0.0f) * innerRadius;
-            vertices.Add(p1);
+            int target = Mathf.FloorToInt(t * quadCount);
 
-            Vector3 p2 = new Vector3(Mathf.Cos(t) * xRadius, Mathf.Sin(t) * yRadius, 0.0f) * outerRadius;
-            vertices.Add(p2);
+            while (vertices.Count - 2 < target)
+            {
+                int i = vertices.Count - 2;
 
-            triangles.Add(i);
-            triangles.Add(i + 2);
-            triangles.Add(i + 1);
+                float angle = ((i + 2f) / quadCount) * maxAngle;
 
-            triangles.Add(i + 2);
-            triangles.Add(i + 3);
-            triangles.Add(i + 1);
+                Vector3 p1 = new Vector3(Mathf.Cos(angle) * xRadius, Mathf.Sin(angle) * yRadius, 0.0f) * innerRadius;
+                vertices.Add(p1);
+
+                Vector3 p2 = new Vector3(Mathf.Cos(angle) * xRadius, Mathf.Sin(angle) * yRadius, 0.0f) * outerRadius;
+                vertices.Add(p2);
+
+                triangles.Add(i);
+                triangles.Add(i + 2);
+                triangles.Add(i + 1);
+
+                triangles.Add(i + 2);
+                triangles.Add(i + 3);
+                triangles.Add(i + 1);
+            }
 
             mesh.Clear();
             mesh.vertices = vertices.ToArray();
