@@ -91,8 +91,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xRadius: 1
-  yRadius: 0.6666667
-  innerRadius: 0.5
+  yRadius: 1
+  innerRadius: 0
   outerRadius: 1
-  speed: 3
+  delay: 0
+  speed: 1
   color: {r: 0.57254905, g: 0.45882353, b: 0.32156864, a: 1}

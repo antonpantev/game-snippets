@@ -9,7 +9,7 @@ public class EllipseMesh : MonoBehaviour
     public float innerRadius = 0f;
     public float outerRadius = 1f;
     public float delay;
-    public float speed = 3f;
+    public float speed = 1f;
     public Color color;
 
     Mesh mesh;
@@ -42,7 +42,8 @@ public class EllipseMesh : MonoBehaviour
         {
             int i = vertices.Count - 2;
 
-            float t = Mathf.Clamp((Time.time - delay) * speed, 0f, maxAngle);
+            float t = Mathf.Clamp01((Time.time - delay) * speed);
+            t = EasingFunction.EaseInOutSine(0, maxAngle, t);
 
             Vector3 p1 = new Vector3(Mathf.Cos(t) * xRadius, Mathf.Sin(t) * yRadius, 0.0f) * innerRadius;
             vertices.Add(p1);
