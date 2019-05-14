@@ -97,3 +97,4 @@ MonoBehaviour:
   delay: 0
   speed: 1
   color: {r: 0.57254905, g: 0.45882353, b: 0.32156864, a: 1}
+  quadCount: 180

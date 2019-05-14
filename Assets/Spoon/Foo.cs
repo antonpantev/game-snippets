@@ -17,7 +17,7 @@ public class Foo : MonoBehaviour
             GameObject go = Instantiate(prefab, Vector3.zero, Quaternion.identity);
             EllipseMesh em = go.GetComponent<EllipseMesh>();
             em.innerRadius = i * width;
-            em.outerRadius = ((i + 1) * width) + (width * 0.02f);
+            em.outerRadius = ((i + 1) * width) + (width * 0.01f);
             em.color = colors[i];
             em.delay = globalDelay + (i * delay);
         }
