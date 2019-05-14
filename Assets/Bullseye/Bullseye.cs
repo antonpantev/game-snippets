@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Foo : MonoBehaviour
+public class Bullseye : MonoBehaviour
 {
     public GameObject prefab;
     public Color[] colors;

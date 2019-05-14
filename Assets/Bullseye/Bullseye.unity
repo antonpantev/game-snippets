@@ -214,7 +214,7 @@ GameObject:
   - component: {fileID: 1117107656}
   - component: {fileID: 1117107657}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Bullseye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
