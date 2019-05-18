@@ -245,11 +245,12 @@ MonoBehaviour:
   - {fileID: 7942654626968671982, guid: e9956279fc2e14464892023b45a1cee0, type: 3}
   - {fileID: 5986861544365410999, guid: 1213e255a91ae4ba9835e0084a6feb29, type: 3}
   minCount: 200
-  maxCount: 300
+  maxCount: 250
   size: 10
+  tooCloseToCamera: 3
   delayStart: {x: 1, y: 2}
   waitTime: {x: 1, y: 2}
-  deathTime: {x: 1, y: 1}
+  deathTime: {x: 0.5, y: 0.5}
 --- !u!4 &199518584
 Transform:
   m_ObjectHideFlags: 0
