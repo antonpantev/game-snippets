@@ -1,2 +1,2 @@
-# game-screenshots
-A repository to hold some of my Game Dev Screenshot work.
+# game-snippets
+A repository to hold some of my game dev work.
