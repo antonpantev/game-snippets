@@ -380,10 +380,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1419069422}
-  - component: {fileID: 1419069421}
   - component: {fileID: 1419069420}
+  - component: {fileID: 1419069421}
   m_Layer: 0
-  m_Name: Disappear
+  m_Name: Existential
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -417,9 +417,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1419069419}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 905090c9b9ade471d99d8461dcc34f9a, type: 3}
+  m_Script: {fileID: 11500000, guid: 9ed2fe0af75bf47bb9036d93602b340b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delayStart: 1
+  waitTime: 1
 --- !u!4 &1419069422
 Transform:
   m_ObjectHideFlags: 0
