@@ -31,13 +31,15 @@ public class JuicyHealthBar : MonoBehaviour
     public float bottomShrinkTime = 0.15f;
     public float waitTime = 0.2f;
 
-    SpriteRenderer topBarSpriteRenderer;
+    SpriteRenderer topBarSr;
+    SpriteRenderer bottomBarSr;
     float maxWidth;
     Tween bottomBarTween = null;
 
     void Start()
     {
-        topBarSpriteRenderer = topBar.GetComponent<SpriteRenderer>();
+        topBarSr = topBar.GetComponent<SpriteRenderer>();
+        bottomBarSr = bottomBar.Find("Bar").GetComponent<SpriteRenderer>();
         maxWidth = topBar.localScale.x;
     }
 
@@ -59,10 +61,15 @@ public class JuicyHealthBar : MonoBehaviour
             bottomBarTween.Kill();
         }
 
-        float target = (currentHealth / maxHealth) * maxWidth;
-        topBar.DOScaleX(target, topShrinkTime);
-        bottomBarTween = bottomBar.DOScaleX(target, bottomShrinkTime).SetDelay(waitTime);
+        float t = currentHealth / maxHealth;
+        float width = t * maxWidth;
+        Color color = Color.Lerp(danger, good, t);
+
+        topBar.DOScaleX(width, topShrinkTime);
+        bottomBarTween = bottomBar.DOScaleX(width, bottomShrinkTime).SetDelay(waitTime);
         transform.DOScale(barScale, barScaleTime).SetLoops(2, LoopType.Yoyo);
-        topBarSpriteRenderer.DOColor(Color.white, topShrinkTime).SetLoops(2, LoopType.Yoyo);
+        // topBarSr.DOColor(Color.white, topShrinkTime).SetLoops(2, LoopType.Yoyo);
+        topBarSr.DOColor(color, topShrinkTime);
+        bottomBarSr.DOColor(color, topShrinkTime);
     }
 }

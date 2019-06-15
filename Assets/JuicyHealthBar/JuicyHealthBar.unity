@@ -770,6 +770,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 100
   maxHealth: 100
+  good: {r: 0, g: 0.89411765, b: 0.21176471, a: 1}
+  warning: {r: 1, g: 0.6392157, b: 0, a: 1}
+  danger: {r: 1, g: 0, b: 0.3019608, a: 1}
   barScale: 1.25
   barScaleTime: 0.035
   topBar: {fileID: 296322480}
