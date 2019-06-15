@@ -608,9 +608,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4afa19677485247b4b31e7517b1e3eb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bottomBar: {fileID: 1490336090}
-  topBar: {fileID: 296322480}
   currentHealth: 100
   maxHealth: 100
-  bottomBarSpeed: 1
-  bottomBarWaitTime: 0.3
+  topBar: {fileID: 296322480}
+  bottomBar: {fileID: 1490336090}
+  waitTime: 0.2
+  shrinkDuration: 0.15
