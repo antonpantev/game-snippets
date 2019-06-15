@@ -288,7 +288,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 195642536}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.5}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -610,7 +610,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 100
   maxHealth: 100
+  barScale: 1.25
+  barScaleTime: 0.035
   topBar: {fileID: 296322480}
+  topShrinkTime: 0.075
   bottomBar: {fileID: 1490336090}
+  bottomShrinkTime: 0.15
   waitTime: 0.2
-  shrinkDuration: 0.15
