@@ -47,7 +47,7 @@ public class JuicyHealthBar : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump"))
         {
-            currentHealth -= Random.Range(0.05f, 0.1f) * maxHealth;
+            currentHealth -= Random.Range(0.1f, 0.2f) * maxHealth;
             currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
 
             UpdateBar();
@@ -69,8 +69,9 @@ public class JuicyHealthBar : MonoBehaviour
         transform.DOScale(barScale, barScaleTime).SetLoops(2, LoopType.Yoyo);
 
         Color color = GetColor(t);
-        topBarSr.DOColor(Color.white, topShrinkTime);
-        topBarSr.DOColor(color, topShrinkTime).SetDelay(topShrinkTime);
+        Sequence colorSequence = DOTween.Sequence();
+        colorSequence.Append(topBarSr.DOColor(Color.white, topShrinkTime));
+        colorSequence.Append(topBarSr.DOColor(color, topShrinkTime));
         bottomBarSr.DOColor(color, topShrinkTime);
     }
 
