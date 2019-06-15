@@ -1,13 +1,17 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 
 public class JuicyHealthBar : MonoBehaviour
 {
-    public Transform bottomBar;
-    public Transform topBar;
     public float currentHealth = 100f;
     public float maxHealth = 100f;
-    public float bottomBarSpeed = 1f;
-    public float bottomBarWaitTime = 0.2f;
+
+    public Transform topBar;
+
+    [Header("Bottom Bar")]
+    public Transform bottomBar;
+    public float waitTime = 0.2f;
+    public float shrinkDuration = 0.15f;
 
     float bottomBarStartTime = Mathf.Infinity;
     float maxWidth;
@@ -23,7 +27,7 @@ public class JuicyHealthBar : MonoBehaviour
         {
             currentHealth -= Random.Range(0.05f, 0.1f) * maxHealth;
             currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
-            bottomBarStartTime = Time.time + bottomBarWaitTime;
+            bottomBarStartTime = Time.time + waitTime;
         }
 
         UpdateBar();
@@ -39,9 +43,7 @@ public class JuicyHealthBar : MonoBehaviour
 
         if (bottomBarStartTime < Time.time)
         {
-            scale = bottomBar.localScale;
-            scale.x = Mathf.MoveTowards(scale.x, target, Time.deltaTime * bottomBarSpeed);
-            bottomBar.localScale = scale;
+            bottomBar.DOScaleX(target, shrinkDuration).SetEase(Ease.InOutSine);
         }
     }
 }
