@@ -68,9 +68,9 @@ public class JuicyHealthBar : MonoBehaviour
         bottomBarTween = bottomBar.DOScaleX(width, bottomShrinkTime).SetDelay(waitTime);
         transform.DOScale(barScale, barScaleTime).SetLoops(2, LoopType.Yoyo);
 
-        // topBarSr.DOColor(Color.white, topShrinkTime).SetLoops(2, LoopType.Yoyo);
         Color color = GetColor(t);
-        topBarSr.DOColor(color, topShrinkTime);
+        topBarSr.DOColor(Color.white, topShrinkTime);
+        topBarSr.DOColor(color, topShrinkTime).SetDelay(topShrinkTime);
         bottomBarSr.DOColor(color, topShrinkTime);
     }
 
