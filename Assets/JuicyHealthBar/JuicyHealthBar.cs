@@ -63,13 +63,30 @@ public class JuicyHealthBar : MonoBehaviour
 
         float t = currentHealth / maxHealth;
         float width = t * maxWidth;
-        Color color = Color.Lerp(danger, good, t);
 
         topBar.DOScaleX(width, topShrinkTime);
         bottomBarTween = bottomBar.DOScaleX(width, bottomShrinkTime).SetDelay(waitTime);
         transform.DOScale(barScale, barScaleTime).SetLoops(2, LoopType.Yoyo);
+
         // topBarSr.DOColor(Color.white, topShrinkTime).SetLoops(2, LoopType.Yoyo);
+        Color color = GetColor(t);
         topBarSr.DOColor(color, topShrinkTime);
         bottomBarSr.DOColor(color, topShrinkTime);
+    }
+
+    Color GetColor(float t)
+    {
+        Color color;
+
+        if (t > 0.5f)
+        {
+            color = Color.Lerp(warning, good, (t - 0.5f) / 0.5f);
+        }
+        else
+        {
+            color = Color.Lerp(danger, warning, t / 0.5f);
+        }
+
+        return color;
     }
 }
