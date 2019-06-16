@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Existential/Existential.unity
-    guid: c844e80253d5f41218320e8bc347ece9
+    path: Assets/JuicyHealthBar/JuicyHealthBar.unity
+    guid: beb24ddb811eb4e778480a6353b600e3
   m_configObjects: {}
