@@ -198,9 +198,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f96abe742af94487e95f2817ce9ef28c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 2
+  ringSize: 2
+  tangentLength: 4
   count: 10
-  prefab: {fileID: 3875705262402671875, guid: ecbd84c4dcdc440bbbcc44a376876ec3, type: 3}
+  prefab: {fileID: 3875705262402671884, guid: ecbd84c4dcdc440bbbcc44a376876ec3, type: 3}
 --- !u!4 &1390802964
 Transform:
   m_ObjectHideFlags: 0

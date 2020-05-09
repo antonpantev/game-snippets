@@ -3,6 +3,8 @@
 public class Tangent : MonoBehaviour
 {
     public float speed = 1f;
+    public float angle = 0f;
+    public float length = 1f;
 
     MeshRenderer mr;
     float t = 0;
@@ -13,6 +15,10 @@ public class Tangent : MonoBehaviour
         mr = GetComponent<MeshRenderer>();
 
         startTime = Time.time + 1f;
+
+        Vector3 eulerAngles = transform.eulerAngles;
+        eulerAngles.z = angle;
+        transform.eulerAngles = eulerAngles;
     }
 
     void Update()
@@ -22,7 +28,7 @@ public class Tangent : MonoBehaviour
             mr.enabled = true;
 
             Vector3 scale = transform.localScale;
-            scale.y = Mathf.SmoothStep(0, 1, t);
+            scale.y = Mathf.SmoothStep(0, 1, t) * length;
             transform.localScale = scale;
 
             if (t < 1)

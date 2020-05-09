@@ -2,9 +2,10 @@
 
 public class Ring : MonoBehaviour
 {
-    public float size = 2f;
+    public float ringSize = 2f;
+    public float tangentLength = 1f;
     public int count = 10;
-    public Transform prefab;
+    public Tangent prefab;
 
     void Start()
     {
@@ -12,10 +13,12 @@ public class Ring : MonoBehaviour
 
         for (int i = 0; i < count; i++)
         {
-            float x = Mathf.Cos(i * deltaAngle) * size;
-            float z = Mathf.Sin(i * deltaAngle) * size;
+            float x = Mathf.Cos(i * deltaAngle) * ringSize;
+            float z = Mathf.Sin(i * deltaAngle) * ringSize;
 
-            Instantiate(prefab, new Vector3(x, z, 0f), Quaternion.identity);
+            Tangent t = Instantiate(prefab, new Vector3(x, z, 0f), Quaternion.identity);
+            t.angle = i * deltaAngle * Mathf.Rad2Deg;
+            t.length = tangentLength;
         }
     }
 }
