@@ -199,8 +199,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ringSize: 2
+  tangentSpeed: 1.5
   tangentLength: 4
-  count: 10
+  maxCount: 10
+  delayTime: 0.15
   prefab: {fileID: 3875705262402671884, guid: ecbd84c4dcdc440bbbcc44a376876ec3, type: 3}
 --- !u!4 &1390802964
 Transform:
@@ -253,7 +255,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.37254903, g: 0.34117648, b: 0.30980393, a: 0}
+  m_BackGroundColor: {r: 0.2, g: 0.2, b: 0.2, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -294,7 +296,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687258581}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -6}
+  m_LocalPosition: {x: 0, y: 0, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

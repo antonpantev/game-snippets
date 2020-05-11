@@ -5,6 +5,7 @@ public class Tangent : MonoBehaviour
     public float speed = 1f;
     public float angle = 0f;
     public float length = 1f;
+    public bool loop = false;
 
     MeshRenderer mr;
     float t = 0;
@@ -35,7 +36,7 @@ public class Tangent : MonoBehaviour
             {
                 t += speed * Time.deltaTime;
             }
-            else
+            else if (loop)
             {
                 startTime = Time.time + 3f;
                 t = 0;
